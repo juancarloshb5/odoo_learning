@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+<!--        <record id="v1" model="ventanas.ventana">-->
+<!--            <field name="name">Corredera E100</field>-->
+<!--            <field name="ubicacion">Piso 54</field>-->
+<!--            <field name="precio">3102</field>-->
+<!--        </record>-->
+<!--        <record id="v2" model="ventanas.ventana">-->
+<!--            <field name="name">Corredera E70</field>-->
+<!--            <field name="ubicacion">Piso 8</field>-->
+<!--            <field name="precio">50102</field>-->
+<!--        </record>-->
+<!--        <record id="v3" model="ventanas.ventana">-->
+<!--            <field name="name">p40 </field>-->
+<!--            <field name="ubicacion">Piso 10</field>-->
+<!--            <field name="precio">314</field>-->
+<!--        </record>-->
+    </data>
+</odoo>

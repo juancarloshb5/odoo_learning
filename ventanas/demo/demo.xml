@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+<!-- 
+    <record id="ventanas.v1" model="ventanas.ventana">
+      <field name="name">Corredera E100</field>
+      <field name="ubicacion">Piso 3</field>
+      <field name="precio">35000</field>
+    </record>
+    <record id="ventanas.v2" model="ventanas.ventana">
+      <field name="name">Corredera E70</field>
+      <field name="ubicacion">Piso 2</field>
+      <field name="precio">28530</field>
+    </record> -->
+
+    </data>
+</odoo>

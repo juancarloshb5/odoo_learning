@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record id="model_access_ventanas" model="ir.model.access">
+        <field name="name">model.access.todo</field>
+        <field name="modelo_id">field_value</field>
+    </record> -->
+
+</odoo>

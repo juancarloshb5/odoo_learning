@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="ventanas.articulo_presupuesto_act_view" model="ir.actions.act_window">
+            <field name="name">Articulos Presupuesto</field>
+            <field name="res_model">ventanas.articulo.presupuesto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <menuitem name="Articulos Presupuesto" id="ventanas.articulo_presupuesto_menu_root" action="ventanas.articulo_presupuesto_act_view"/>
+
+        <record id="ventanas.presupuesto_action_view" model="ir.actions.act_window">
+            <field name="name">Presupuestos</field>
+            <field name="res_model">ventanas.presupuesto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <menuitem name="Presupuestos" id="ventanas.presupuesto_menu_root" action="ventanas.presupuesto_action_view"/>
+
+     <record id="ventanas.presupuesto_form_view" model="ir.ui.view">
+      <field name="name">ventanas.ventana.form</field>
+      <field name="model">ventanas.presupuesto</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+           <button type="object" name="approve" string="Pasar a produccion" attrs="{'invisible': [('state', '!=', 'aprobado')]}" ></button>
+          </header>
+          <sheet>
+              <group string="Informacion">
+                  <field name="customer" string="Cliente"/>
+                  <field name="name"/>
+                  <field name="active" />
+                  <field name="state"/>
+                  <field name="price"/>
+              </group>
+
+              <group>
+               <field name="articulos">
+                  <tree>
+                      <field name="name"/>
+                      <field name="cantidad"/>
+                      <field name="precio"/>
+                  </tree>
+                </field>
+              </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    </data>
+</odoo>

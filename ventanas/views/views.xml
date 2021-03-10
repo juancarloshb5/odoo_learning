@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.actions.act_window" id="ventanas.action_window">
+      <field name="name">Modulo Ventanas</field>
+      <field name="res_model">ventanas.ventana</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Ventanas" id="ventanas.menu_root" action="ventanas.action_window"/>
+
+    <record id="ventanas_form_view" model="ir.ui.view">
+      <field name="name">ventanas.ventana.form</field>
+      <field name="model">ventanas.ventana</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+           <button type="object" name="desactivar" string="Desactivar"  ></button>
+          </header>
+          <sheet>
+            <group>
+              <group string="Informacion">
+                  <field name="name"/>
+                  <field name="active" />
+                  <field name="ubicacion"/>
+                  <field name="precio"/>
+              </group>
+              <group string="Medidas">
+                <field name="ancho"/>
+                <field name="alto"/>
+                <field name="area" string="Metros" attrs="{'invisible': [('ancho', '=', 0),('alto', '=', 0)]}"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="ventanas_tree_view">
+      <field name="name">ventanas.ventana.tree</field>
+      <field name="model">ventanas.ventana</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="ubicacion"/>
+          <field name="precio"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="ventanas.sistemas_action_view">
+      <field name="name">Sistemas</field>
+      <field name="res_model">ventanas.sistema</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Sistemas" parent="ventanas.menu_root" id="ventanas.menu_sistema" action="ventanas.sistemas_action_view"/>
+
+    <record model="ir.actions.act_window" id="ventanas.colores_action_view">
+      <field name="name">Colores</field>
+      <field name="res_model">ventanas.color</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Colores" parent="ventanas.menu_root" id="ventanas.menu_colores" action="ventanas.colores_action_view"/>
+
+
+
+  </data>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+         <record id="ventanas.articulo_presupuesto_act_view" model="ir.actions.act_window">
+            <field name="name">Articulos Presupuesto</field>
+            <field name="res_model">ventanas.articulo.presupuesto</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <menuitem name="Articulos Presupuesto" id="ventanas.articulo_presupuesto_menu_root" action="ventanas.articulo_presupuesto_act_view"/>
+    </data>
+</odoo>
