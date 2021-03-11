@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo  import models, fields
+from odoo  import models, fields, api
 
 
 class Presupuesto(models.Model):
@@ -7,7 +7,7 @@ class Presupuesto(models.Model):
     _description = "Presupuesto de Ventanas"
 
     name = fields.Char("Referencia")
-    price = fields.Float("Price")
+
     active = fields.Boolean("Activo")
     state = fields.Selection([("proceso","En Proceso"), ("aprobado","Aprobado"), ("cancelado","Cancelado")])
     customer = fields.Many2one(
@@ -21,6 +21,17 @@ class Presupuesto(models.Model):
         inverse_name="presupuesto_id",
         string="Articulos"
     )
+    price = fields.Float(string="Total", compute="_total_amount", store=True)
+
+    @api.depends('articulos')
+    def _total_amount(self):
+        for presupuesto in self:
+            amount = 0.0
+            for articulo in presupuesto.articulos:
+                amount += articulo.subtotal
+            presupuesto.update({
+                'price': amount
+            })
 
     def approve(self):
         self.state = "aprobado"

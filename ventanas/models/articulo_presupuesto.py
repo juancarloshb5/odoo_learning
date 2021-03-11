@@ -16,15 +16,16 @@ class ArticuloPresupuesto(models.Model):
         string="Articulo"
     )
     name = fields.Char(string="Referencia", related="product_id.name")
-    # name = fields.Char(string="Referencia")
-
-    cantidad = fields.Integer(string="Cantidad")
-    precio = fields.Float(string="Precio", related="product_id.list_price")
-
-    precio_calculado = fields.Float(string="Precio Calculado")
-
+    quantity = fields.Integer(string="Cantidad")
+    price = fields.Float(string="Precio")
+    subtotal = fields.Float(string="Subtotal", compute="_subtotal", store=True)
 
     @api.onchange('product_id')
     def _change_precio(self):
         for record in self:
-            record.precio_calculado = record.product_id.list_price
+            record.price = record.product_id.list_price
+
+    @api.depends('quantity','price')
+    def _subtotal(self):
+        for articulo in self:
+            articulo.subtotal = float(articulo.quantity) * articulo.price
