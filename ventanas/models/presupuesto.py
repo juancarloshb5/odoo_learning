@@ -6,7 +6,7 @@ class Presupuesto(models.Model):
     _name = "ventanas.presupuesto"
     _description = "Presupuesto de Ventanas"
 
-    name = fields.Char("Referencia")
+    name = fields.Char(string="Referencia", required=True)
 
     active = fields.Boolean("Activo")
     state = fields.Selection([("proceso","En Proceso"), ("aprobado","Aprobado"), ("cancelado","Cancelado")])
