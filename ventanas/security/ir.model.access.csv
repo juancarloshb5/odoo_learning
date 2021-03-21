@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ventanas_ventanas,ventanas.ventanas,ventanas.model_ventanas_ventana,base.group_user,1,1,1,1
+access_ventanas_ventanas,ventanas.ventanas,model_ventanas_ventana,base.group_user,1,1,1,1
 access_ventanas_presupuesto,access_ventanas_presupuesto,model_ventanas_presupuesto,base.group_user,1,1,1,1
 access_ventanas_articulo_presupuesto,access_ventanas_articulo_presupuesto,model_ventanas_articulo_presupuesto,base.group_user,1,1,1,1
 access_ventanas_sistemas,access_ventanas_sistemas,model_ventanas_sistema,base.group_user,1,1,1,1

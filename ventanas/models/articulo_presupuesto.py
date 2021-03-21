@@ -28,7 +28,9 @@ class ArticuloPresupuesto(models.Model):
 
     presupuesto_id = fields.Many2one(
         comodel_name="ventanas.presupuesto",
-        string="Presupuesto"
+        string="Presupuesto",
+        readonly=True
+
     )
 
     product_id = fields.Many2one(
@@ -41,5 +43,9 @@ class ArticuloPresupuesto(models.Model):
     subtotal = fields.Float(string="Subtotal", compute="_subtotal", store=True)
 
 
-
+    _sql_constraints = [(
+                        'unique_articulo_by_presupuesto',
+                         'unique(product_id,presupuesto_id)',
+                         'Cannot insert duplicate articulos'
+                         )]
 

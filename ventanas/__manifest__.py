@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
+        'views/articulo.xml',
         'views/ventanas_presupuesto_views.xml',
         # 'views/ventannas_articulos_presupuesto_views.xml',
         'views/templates.xml',

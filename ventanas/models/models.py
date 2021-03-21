@@ -15,6 +15,12 @@ class ventana(models.Model):
     color = fields.Many2one("ventanas.color")
     active = fields.Boolean(default=True)
 
+    _sql_constraints = [(
+        'nombre_ventana',
+        'unique(name)',
+        'This ventana alredy exists'
+    )]
+
     @api.depends('ancho','alto')
     def _area_pc(self):
         self.area = float(self.ancho * self.alto) / 1000000
