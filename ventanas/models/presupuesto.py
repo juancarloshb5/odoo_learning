@@ -8,7 +8,7 @@ class Presupuesto(models.Model):
 
     name = fields.Char(string="Referencia", required=True)
 
-    active = fields.Boolean("Activo")
+    active = fields.Boolean(string="Activo", default=True)
     state = fields.Selection([("proceso","En Proceso"), ("aprobado","Aprobado"), ("cancelado","Cancelado")])
     customer = fields.Many2one(
         comodel_name="res.partner",
@@ -16,6 +16,8 @@ class Presupuesto(models.Model):
         required= True
 
     )
+    street = fields.Char(related="customer.street", string="Calle")
+    customer_name = fields.Char(related="customer.name", string="Cliente")
     articulos = fields.One2many(
         comodel_name="ventanas.articulo.presupuesto",
         inverse_name="presupuesto_id",

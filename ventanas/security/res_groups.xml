@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="module_category_ventanas" model="ir.module.category">
+        <field name="name">Ventanas</field>
+        <field name ="sequence">3</field>
+    </record>
+    <record id="module_category_ventanas_presupuestos" model="ir.module.category">
+        <field name="name">Presupuestos</field>
+        <field name ="sequence">1</field>
+        <field name="parent_id" ref="module_category_ventanas"/>
+    </record>
+
+    <record id="group_ventanas_presupuesto_read" model="res.groups">
+        <field name="name">Usuario Consulta</field>
+        <field name="category_id" ref="module_category_ventanas_presupuestos"/>
+    </record>
+
+    <record id="group_ventanas_presupuesto_edit" model="res.groups">
+        <field name="name">Vendedor</field>
+        <field name="category_id" ref="module_category_ventanas_presupuestos"/>
+        <field name="implied_ids" eval="[(4,ref('group_ventanas_presupuesto_read'))]"/>
+    </record>
+
+
     <!-- <record id="model_access_ventanas" model="ir.model.access">
         <field name="name">model.access.todo</field>
         <field name="modelo_id">field_value</field>

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': "ventanas",
 
@@ -20,21 +19,23 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','product'],
+    'depends': ['base', 'product'],
 
     # always loaded
     'data': [
+        'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/articulo.xml',
         'views/ventanas_presupuesto_views.xml',
         # 'views/ventannas_articulos_presupuesto_views.xml',
         'views/templates.xml',
-        'data/data.xml',
-        'security/res_groups.xml'
+        'data/data.xml'
+
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
 }
+# -*- coding: utf-8 -*-

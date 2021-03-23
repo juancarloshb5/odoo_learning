@@ -1,25 +1,18 @@
 <odoo>
     <data>
-        <record id="ventanas.articulo_presupuesto_act_view" model="ir.actions.act_window">
-            <field name="name">Articulos Presupuesto</field>
-            <field name="res_model">ventanas.articulo.presupuesto</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <menuitem name="Articulos Presupuesto" id="ventanas.articulo_presupuesto_menu_root"
-                  action="ventanas.articulo_presupuesto_act_view"/>
+
 
 <!--        Presupuestos-->
         <record id="ventanas.presupuesto_action_view" model="ir.actions.act_window">
             <field name="name">Presupuestos</field>
             <field name="res_model">ventanas.presupuesto</field>
             <field name="view_mode">tree,form</field>
-
        </record>
         <menuitem name="Presupuestos" id="ventanas.presupuesto_menu_root" action="ventanas.presupuesto_action_view"/>
 
 
         <record id="presupuesto_tree_view" model="ir.ui.view">
-            <field name="name">ventanas.ventana.tree</field>
+            <field name="name">ventanas.presupuesto.tree</field>
             <field name="model">ventanas.presupuesto</field>
             <field name="arch" type="xml">
                 <tree>
@@ -49,13 +42,16 @@
 
                         <notebook>
                             <page string="Lineas">
+                                <control>
+                                    <create name="add_product_control" string="Agregar producto"/>
+                                </control>
                                 <field name="articulos">
-                                    <tree>
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="quantity"/>
                                         <field name="price"/>
                                         <field name="subtotal"/>
-
                                     </tree>
                                 </field>
                             </page>
