@@ -36,6 +36,7 @@
                             <field name="customer" string="Cliente"/>
                             <field name="name"/>
                             <field name="active"/>
+                            <field name="facturado"/>
                             <field name="state"/>
                             <field name="price"/>
                         </group>

@@ -23,6 +23,7 @@ class Presupuesto(models.Model):
         inverse_name="presupuesto_id",
         string="Articulos"
     )
+    facturado = fields.Boolean(string="Facturado")
     price = fields.Float(string="Total", compute="_total_amount", store=True)
 
     @api.depends('articulos')

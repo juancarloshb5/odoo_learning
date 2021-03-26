@@ -1,60 +1,28 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
+    <data>
+        <!-- explicit list view definition -->
 
-    <record model="ir.ui.view" id="proyectos.list">
-      <field name="name">Proyectos</field>
-      <field name="model">proyectos.proyecto</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="codigo"/>
-          <field name="nombre"/>
-          <field name="contacto"/>
-        </tree>
-      </field>
-    </record>
-
-
-    <!-- actions opening views on models -->
-
-    <record model="ir.actions.act_window" id="proyectos.action_window">
-      <field name="name">proyectos window</field>
-      <field name="res_model">proyectos.proyecto</field>
-      <field name="view_mode">tree,form</field>
-    </record>
+        <record model="ir.ui.view" id="opma_proyecto_tree">
+            <field name="name">Proyectos</field>
+            <field name="model">opma.proyecto</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="cliente"/>
+                </tree>
+            </field>
+        </record>
 
 
-    <!-- server action to the one above -->
-
-    <record model="ir.actions.server" id="proyectos.action_server">
-      <field name="name">proyectos server</field>
-      <field name="model_id" ref="model_proyectos_proyectos"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="proyectos.opma_proyecto_action_window">
+            <field name="name">Proyectos</field>
+            <field name="res_model">opma.proyecto</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+         <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.opma_proyecto_action_window"/>
 
 
-    <!-- Top menu item -->
-
-    <menuitem name="proyectos" id="proyectos.menu_root"/>
-
-    <!-- menu categories -->
-
-    <menuitem name="Menu 1" id="proyectos.menu_1" parent="proyectos.menu_root"/>
-    <menuitem name="Menu 2" id="proyectos.menu_2" parent="proyectos.menu_root"/>
-
-    <!-- actions -->
-
-    <menuitem name="List" id="proyectos.menu_1_list" parent="proyectos.menu_1"
-              action="proyectos.action_window"/>
-    <menuitem name="Server to list" id="proyectos" parent="proyectos.menu_2"
-              action="proyectos.action_server"/>
-
-  </data>
+    </data>
 </odoo>
