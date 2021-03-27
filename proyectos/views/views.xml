@@ -14,6 +14,51 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="opma_proyecto_form">
+            <field name="name">Proyectos</field>
+            <field name="model">opma.proyecto</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="aprobar_proyecto"
+                                class="oe_highlight" string="Aprobar Proyecto" type="object"></button>
+                        <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,descartadao"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="cliente"/>
+                                <field name="presupuesto_winperfil"/>
+                            </group>
+                            <group>
+                                <field name="currency_id"/>
+                                <field name="precio_instalacion"/>
+                                <field name="fecha_aprobado"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Modelos">
+                                <control>
+                                    <create name="add_modelo_proyecto_control" string="Agregar Modelo"/>
+                                </control>
+                                <field name="modelos">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="producto_id"/>
+                                        <field name="cantidad"/>
+                                        <field name="precio"/>
+                                        <field name="subtotal"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Instalaciones"></page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="proyectos.opma_proyecto_action_window">
@@ -21,7 +66,7 @@
             <field name="res_model">opma.proyecto</field>
             <field name="view_mode">tree,form,kanban</field>
         </record>
-         <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.opma_proyecto_action_window"/>
+        <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.opma_proyecto_action_window"/>
 
 
     </data>

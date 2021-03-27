@@ -13,7 +13,19 @@ class Proyecto(models.Model):
     precio_venta = fields.Monetary(string="Precio Venta")
     currency_id = fields.Many2one("res.currency", string="Moneda")
     precio_instalacion = fields.Monetary(string="Precio Instalacion")
+    fecha_aprobado = fields.Date(string="Fecha Aprobado")
 
+    modelos = fields.One2many(comodel_name="opma.proyecto_modelo", inverse_name="proyecto_id")
+
+
+    def is_manager(self):
+        # return self.env.user.has_group('base.group_user')
+        return True
+
+    def aprobar_proyecto(self):
+        for proyecto in self:
+            proyecto.state = "aprobado"
+            # proyecto.fecha_aprobado = fields.Datetime.now
 
 
 

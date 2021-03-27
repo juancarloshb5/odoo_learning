@@ -28,7 +28,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button type="object" name="approve" string="Pasar a produccion"
+                            <button type="object" name="approve" string="Pasar a produccion"
                                 attrs="{'invisible': [('state', '!=', 'aprobado')]}"></button>
                     </header>
                     <sheet>
