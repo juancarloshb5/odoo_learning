@@ -1,4 +1,4 @@
-from odoo import  models, fields, api
+from odoo import  models, fields, api, exceptions
 
 
 class Proyecto(models.Model):
@@ -19,12 +19,18 @@ class Proyecto(models.Model):
 
 
     def is_manager(self):
-        # return self.env.user.has_group('base.group_user')
-        return True
+        return self.env.user.has_group('proyectos.proyectos_aprobar_proyecto')
+        # return True
 
     def aprobar_proyecto(self):
-        for proyecto in self:
-            proyecto.state = "aprobado"
+        if(self.is_manager()):
+            for proyecto in self:
+                proyecto.state = "aprobado"
+
+        else:
+            raise exceptions.ValidationError("No tiene privilegios para aprobar")
+
+
             # proyecto.fecha_aprobado = fields.Datetime.now
 
 

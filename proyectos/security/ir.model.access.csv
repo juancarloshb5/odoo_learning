@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_opma_proyectos,opma_proyecto,model_opma_proyecto,base.group_user,1,1,1,1
+access_opma_proyectos_usuario,opma_proyecto_usuario,model_opma_proyecto,proyectos.group_proyecto_usuario,1,1,1,0
+access_opma_proyectos_manager,opma_proyecto_manager,model_opma_proyecto,proyectos.group_proyecto_manager,1,1,1,1
+access_proyectos_modelo_proyecto_manager,opma_proyecto_manager,model_opma_proyecto_modelo,proyectos.group_proyecto_usuario,1,1,1,1
+access_proyectos_modelo_proyecto_usuario,opma_proyecto_usuario,model_opma_proyecto_modelo,proyectos.group_proyecto_manager,1,1,1,1

@@ -21,7 +21,11 @@
                 <form>
                     <header>
                         <button name="aprobar_proyecto"
-                                class="oe_highlight" string="Aprobar Proyecto" type="object"></button>
+                                class="oe_highlight"
+                                groups="proyectos.proyectos_aprobar_proyecto"
+                                string="Aprobar Proyecto"
+                                type="object">
+                        </button>
                         <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,descartadao"/>
                     </header>
                     <sheet>
@@ -47,6 +51,8 @@
                                         <field name="name"/>
                                         <field name="producto_id"/>
                                         <field name="cantidad"/>
+                                        <field name="ancho"/>
+                                        <field name="alto"/>
                                         <field name="precio"/>
                                         <field name="subtotal"/>
                                     </tree>
