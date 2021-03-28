@@ -2,9 +2,9 @@
     <data>
         <!-- explicit list view definition -->
 
-        <record model="ir.ui.view" id="opma_proyecto_tree">
+        <record model="ir.ui.view" id="proyectos_proyecto_tree">
             <field name="name">Proyectos</field>
-            <field name="model">opma.proyecto</field>
+            <field name="model">proyectos.proyecto</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -14,19 +14,32 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="opma_proyecto_form">
+        <record model="ir.ui.view" id="proyectos_proyecto_form">
             <field name="name">Proyectos</field>
-            <field name="model">opma.proyecto</field>
+            <field name="model">proyectos.proyecto</field>
             <field name="arch" type="xml">
                 <form>
                     <header>
                         <button name="aprobar_proyecto"
                                 class="oe_highlight"
+                                attrs="{'invisible':[('state','=','aprobado')]}"
                                 groups="proyectos.proyectos_aprobar_proyecto"
-                                string="Aprobar Proyecto"
+                                string="Aprobar"
                                 type="object">
                         </button>
-                        <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,descartadao"/>
+                        <button name="desaprobar_proyecto"
+                                attrs="{'invisible':[('state','!=','aprobado')]}"
+                                groups="proyectos.proyectos_aprobar_proyecto"
+                                string="Desaprobar"
+                                type="object">
+                        </button>
+                        <button name="terminar_proyecto"
+                                class="oe_highlight"
+                                attrs="{'invisible':[('state','!=','aprobado')]}"
+                                string="Terminar"
+                                type="object">
+                        </button>
+                        <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,terminado,descartado"/>
                     </header>
                     <sheet>
                         <group>
@@ -34,6 +47,7 @@
                                 <field name="name"/>
                                 <field name="cliente"/>
                                 <field name="presupuesto_winperfil"/>
+                                <field name="presupuesto_adjunto"/>
                             </group>
                             <group>
                                 <field name="currency_id"/>
@@ -67,12 +81,13 @@
         </record>
 
         <!-- actions opening views on models -->
-        <record model="ir.actions.act_window" id="proyectos.opma_proyecto_action_window">
+        <record model="ir.actions.act_window" id="proyectos.proyectos_proyecto_action_window">
             <field name="name">Proyectos</field>
-            <field name="res_model">opma.proyecto</field>
+            <field name="res_model">proyectos.proyecto</field>
             <field name="view_mode">tree,form,kanban</field>
         </record>
-        <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.opma_proyecto_action_window"/>
+        <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.proyectos_proyecto_action_window"/>
+        <menuitem name="Etapas" parent="proyectos.menu_root" id="proyectos.etapas_menu" action="proyectos.proyectos_etapa_act_view"/>
 
 
     </data>

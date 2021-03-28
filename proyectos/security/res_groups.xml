@@ -31,14 +31,34 @@
             <field name="category_id" ref="proyectos_module_tecnico"></field>
         </record>
         <!--        Reglas-->
-        <record id="proyectos_rule_bloquear_aprobados" model="ir.rule">
-            <field name="name">Proyectos Aprobados no se pueden editar</field>
-            <field name="model_id" ref="model_opma_proyecto"/>
-            <field name="groups"
-                   eval="[(4,ref('group_proyecto_usuario'))]"/>
-            <field name="domain_force">[('state','!=',"aprobado")]</field>
+        <record id="proyectos_rule_noborrar_terminados_o_aprobados" model="ir.rule">
+            <field name="name">Proyectos Aprobados o Terminados no se pueden borrar</field>
+            <field name="model_id" ref="model_proyectos_proyecto"/>
+<!--            <field name="groups" eval="[(4,ref('group_proyecto_usuario'))]"/>-->
+            <field name="domain_force">[('state','!=',"terminado"),('state','!=',"aprobado")]</field>
+            <field name="perm_read" eval="0"></field>
+            <field name="perm_write" eval="0"></field>
+            <field name="perm_create" eval="0"></field>
+            <field name="perm_unlink" eval="1"></field>
+        </record>
+
+        <record id="proyectos_rule_bloquear_terminados" model="ir.rule">
+            <field name="name">Proyectos Terminados no se pueden editar</field>
+            <field name="model_id" ref="model_proyectos_proyecto"/>
+            <field name="groups"    eval="[(4,ref('group_proyecto_usuario'))]"/>
+            <field name="domain_force">[('state','!=',"terminado")]</field>
             <field name="perm_read" eval="0"></field>
             <field name="perm_write" eval="1"></field>
+            <field name="perm_create" eval="0"></field>
+            <field name="perm_unlink" eval="1"></field>
+        </record>
+        <record id="proyectos_rule_bloquear_terminados_manager" model="ir.rule">
+            <field name="name">Proyectos Terminados no se pueden editar manager</field>
+            <field name="model_id" ref="model_proyectos_proyecto"/>
+            <field name="groups"    eval="[(4,ref('group_proyecto_manager'))]"/>
+            <field name="domain_force">[('state','!=',"terminado")]</field>
+            <field name="perm_read" eval="0"></field>
+            <field name="perm_write" eval="0"></field>
             <field name="perm_create" eval="0"></field>
             <field name="perm_unlink" eval="1"></field>
         </record>
