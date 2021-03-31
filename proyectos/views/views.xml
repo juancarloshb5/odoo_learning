@@ -37,6 +37,12 @@
                                 class="oe_highlight"
                                 attrs="{'invisible':[('state','!=','aprobado')]}"
                                 string="Terminar"
+                                groups="proyectos.group_proyecto_manager"
+                                type="object">
+                        </button>
+                        <button name="post_proyecto"
+                                class="oe_highlight"
+                                string="Postear"
                                 type="object">
                         </button>
                         <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,terminado,descartado"/>
@@ -51,8 +57,14 @@
                             </group>
                             <group>
                                 <field name="currency_id"/>
-                                <field name="precio_instalacion"/>
                                 <field name="fecha_aprobado"/>
+                                <h3>Precios</h3>
+                                <field name="precio_presupuestado"/>
+                                <field name="precio_ejecutado"/>
+                                <field name="precio_ejecutado_presupuesto"/>
+                                <field name="precio_instalacion"/>
+
+
                             </group>
                         </group>
                         <notebook>

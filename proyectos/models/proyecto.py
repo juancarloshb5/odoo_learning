@@ -1,8 +1,34 @@
+
+import requests
+import json
+
 from odoo import  models, fields, api, exceptions
 from datetime import  date
 from ..helpers.defaults import Defaults
 
 class Proyecto(models.Model):
+    @api.depends('modelos')
+    def _calculo_presupuesto(self):
+        subtotal = 0
+        for modelo in self.modelos:
+            subtotal += modelo.cantidad * modelo.precio
+        self.precio_presupuestado = subtotal
+
+    @api.depends('etapas')
+    def _calculo_ejecutado(self):
+        subtotal = 0
+        for etapa in self.etapas:
+            subtotal += etapa.precio_ejecutado
+        self.precio_ejecutado = subtotal
+
+    @api.depends('etapas')
+    def _calculo_ejecutado_presupuesto(self):
+        subtotal = 0
+        for etapa in self.etapas:
+            subtotal += etapa.precio_presupuesto
+        self.precio_ejecutado_presupuesto = subtotal
+
+
     _name = "proyectos.proyecto"
     _description = "Proyectos"
 
@@ -20,7 +46,13 @@ class Proyecto(models.Model):
     fecha_aprobado = fields.Date(string="Fecha Aprobado", readonly="true")
     presupuesto_adjunto = fields.Binary(string="Presupuesto")
 
+    precio_presupuestado = fields.Float(string="Presupuesto Total", compute="_calculo_presupuesto")
+    precio_ejecutado = fields.Float(string="Ejecutado", compute="_calculo_ejecutado")
+    precio_ejecutado_presupuesto = fields.Float(string="Ejecutado Presupuesto", compute="_calculo_ejecutado_presupuesto")
+
     modelos = fields.One2many(comodel_name="proyectos.proyecto_modelo", inverse_name="proyecto_id")
+    etapas = fields.One2many(comodel_name="proyectos.etapa", inverse_name="proyecto")
+
 
 
     def is_manager(self):
@@ -35,6 +67,19 @@ class Proyecto(models.Model):
         else:
             raise exceptions.ValidationError("No tiene privilegios para aprobar")
 
+    def post_proyecto(self):
+        print("Posting")
+        proyecto = json.dumps({
+            'id': 10,
+            'cliente': 'self.cliente.id'
+        })
+        r = requests.post('http://localhost:56503/api/Odoo/Proyecto',json={'id':self.id}, params={"id": self.id})
+        print(r.status_code)
+        if (r.status_code == requests.codes.ok):
+            print("Get Value")
+        else:
+            print("Bad")
+
     def desaprobar_proyecto(self):
         if(self.is_manager()):
             for proyecto in self:
@@ -48,6 +93,10 @@ class Proyecto(models.Model):
             proyecto.update({
                 'state': "terminado",
             })
+
+
+
+
 
 
 

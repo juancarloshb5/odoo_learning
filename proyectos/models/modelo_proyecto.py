@@ -13,11 +13,6 @@ class ModeloProyecto(models.Model):
     precio = fields.Float(string="Precio")
     subtotal = fields.Float(string="Subtotal", compute="_subtotal", store=True)
 
-
-
-
-
-
     @api.depends('cantidad', 'precio')
     def _subtotal(self):
         for modelo in self:

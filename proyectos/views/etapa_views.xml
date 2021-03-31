@@ -6,4 +6,85 @@
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
+    <record id="proyectos.etapa_tree_view" model="ir.ui.view">
+        <field name="name">Etapas</field>
+        <field name="model">proyectos.etapa</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="proyecto"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="proyectos.etapa_form_view" model="ir.ui.view">
+        <field name="name">Etapa</field>
+        <field name="model">proyectos.etapa</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="proyecto" attrs="{'readonly':[('state','!=','registro')]}"/>
+                            <field name="name"/>
+                            <field name="state"/>
+                            <field name="fecha_inicio"/>
+
+                        </group>
+                        <group>
+                            <h3>Winperfil</h3>
+                            <field name="presupuesto_winperfil"/>
+                            <field name="oferta_winperfil"/>
+                            <field name="presupuesto_adjunto"/>
+                            <h3>Precios</h3>
+                            <field name="precio_ejecutado"/>
+                            <field name="precio_presupuesto"/>
+                        </group>
+
+
+                    </group>
+                    <group>
+                        <notebook>
+                            <page string="Lineas">
+                                <field name="modelos">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+<!--                                        <field name="etapa"/>-->
+                                        <field name="proyecto"/>
+                                        <field name="modelo"/>
+                                        <field name="cantidad"/>
+                                        <field name="ancho"/>
+                                        <field name="alto"/>
+                                        <field name="precio"/>
+                                        <field name="subtotal_ejecutado"/>
+                                        <field name="precio_presupuesto"/>
+                                        <field name="subtotal_presupuesto"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Montos">
+                                <group>
+                                    <group>
+                                        <h3 class="oe_title">Calculados</h3>
+                                        <field name="precio_ejecutado"/>
+                                        <field name="instalacion_calculada"/>
+                                    </group>
+                                    <group>
+                                        <h3>Winperfil</h3>
+                                        <field name="precio_presupuesto"/>
+                                        <field name="instalacion_pagar"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                        </notebook>
+                    </group>
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
 </odoo>

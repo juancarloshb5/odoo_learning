@@ -19,11 +19,29 @@ class Etapa(models.Model):
             ('instalacion',"Instalando"),
             ('terminada',"Terminada"),
             ('recibida',"Recibida"),
-        ], default="registro")
-    precio_calculado = fields.Monetary(string="Precio Calculado")
-    instalacion_calculada = fields.Monetary(string="Instalacion Calculada")
-    precio_presupuesto = fields.Monetary(string="Precio Winperfil")
+        ], default="registro", string="Estado")
+    instalacion_calculada = fields.Monetary(string="Instalacion Calculada", readonly=True)
     instalacion_pagar = fields.Monetary(string="Instalacion a pagar")
+    precio_ejecutado = fields.Monetary(string="Precio Calculado", readonly=True, compute="_calculo_precio_ejecutado", store=True)
+    precio_presupuesto = fields.Monetary(string="Precio Winperfil", readonly=True, compute="_calculo_precio_presupuesto", store=True)
+    modelos = fields.One2many(comodel_name="proyectos.modelo_etapa", inverse_name="etapa")
+
+
+    @api.depends('modelos')
+    def _calculo_precio_ejecutado(self):
+        for etapa in self:
+            subtotal = 0
+            for modelo in etapa.modelos:
+                subtotal += modelo.subtotal_ejecutado
+            etapa.precio_ejecutado= subtotal
+
+    @api.depends('modelos')
+    def _calculo_precio_presupuesto(self):
+        for etapa in self:
+            subtotal = 0
+            for modelo in etapa.modelos:
+                subtotal += modelo.subtotal_presupuesto
+            etapa.precio_presupuesto = subtotal
 
 
 

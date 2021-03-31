@@ -3,4 +3,5 @@
 from . import proyecto
 from . import modelo_proyecto
 from . import etapa_proyecto
+from . import modelo_etapa
 
