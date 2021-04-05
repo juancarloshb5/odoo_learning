@@ -25,8 +25,8 @@
     'data': [
         'security/ir.model.access.csv',
         'security/res_groups.xml',
-        'views/etapa_views.xml',
         'views/views.xml',
+        'views/etapa_views.xml',
         # 'views/templates.xml',
     ],
     # only loaded in demonstration mode

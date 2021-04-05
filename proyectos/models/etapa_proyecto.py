@@ -6,7 +6,9 @@ class Etapa(models.Model):
     _description="Etapa de un proyecto"
 
     name = fields.Char(string="Nombre Etapa")
-    proyecto = fields.Many2one(comodel_name="proyectos.proyecto", required=True)
+
+    proyecto_id = fields.Many2one(comodel_name="proyectos.proyecto")
+    proyecto_context = fields.Integer(string="Proyecto Context")
     currency_id = fields.Many2one(comodel_name="res.currency", string="Moneda", default=Defaults.default_currency())
     fecha_inicio = fields.Date("Fecha Inicio")
     presupuesto_winperfil = fields.Integer("Presupuesto Winperfil")

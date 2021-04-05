@@ -45,14 +45,17 @@
                                 string="Postear"
                                 type="object">
                         </button>
-                        <field name="state" widget="statusbar" statusbar_visible="proceso,aprobado,terminado,descartado"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="proceso,aprobado,terminado,descartado"/>
                     </header>
                     <sheet>
                         <group>
                             <group>
+                                <field name="id"/>
                                 <field name="name"/>
                                 <field name="cliente"/>
                                 <field name="presupuesto_winperfil"/>
+                                <field name="numero_presupuesto"/>
                                 <field name="presupuesto_adjunto"/>
                             </group>
                             <group>
@@ -63,8 +66,6 @@
                                 <field name="precio_ejecutado"/>
                                 <field name="precio_ejecutado_presupuesto"/>
                                 <field name="precio_instalacion"/>
-
-
                             </group>
                         </group>
                         <notebook>
@@ -75,6 +76,7 @@
                                 <field name="modelos">
                                     <tree editable="bottom">
                                         <field name="name"/>
+                                        <!--                                        <field name="proyecto_id"/>-->
                                         <field name="producto_id"/>
                                         <field name="cantidad"/>
                                         <field name="ancho"/>
@@ -85,6 +87,20 @@
                                 </field>
                             </page>
                             <page string="Instalaciones"></page>
+                            <page name="etapas_page" string="Etapas">
+<!--                                <field name="etapas" context="{'default_proyecto_id':active_id,'default_proyecto_context':id , 'default_name':name }">-->
+<!--                                    <form>-->
+<!--                                        <field name="name"/>-->
+<!--                                        <field name="proyecto_id"/>-->
+<!--                                        <field name="proyecto_context"/>-->
+<!--                                        <field name="state"/>-->
+<!--                                        <field name="fecha_inicio"/>-->
+<!--                                        <field name="presupuesto_winperfil"/>-->
+<!--                                    </form>-->
+
+<!--                                </field>-->
+                                <!--                                <field name="etapas" context="{'default_proyecto_id':active_id,'default_proyecto_context':id}"/>-->
+                            </page>
 
                         </notebook>
                     </sheet>
@@ -98,8 +114,17 @@
             <field name="res_model">proyectos.proyecto</field>
             <field name="view_mode">tree,form,kanban</field>
         </record>
+
+        <record id="proyectos.proyectos_etapa_act_view" model="ir.actions.act_window">
+            <field name="name">Etapas</field>
+            <field name="res_model">proyectos.etapa</field>
+            <field name="context">{'default_proyecto_id':active_id}</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
         <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.proyectos_proyecto_action_window"/>
-        <menuitem name="Etapas" parent="proyectos.menu_root" id="proyectos.etapas_menu" action="proyectos.proyectos_etapa_act_view"/>
+                <menuitem name="Etapas" parent="proyectos.menu_root" id="proyectos.etapas_menu"
+                          action="proyectos.proyectos_etapa_act_view"/>
 
 
     </data>
