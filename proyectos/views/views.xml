@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="state"/>
                     <field name="cliente"/>
+                    <field name="presupuesto_winperfil"/>
                 </tree>
             </field>
         </record>
@@ -61,6 +62,7 @@
                             <group>
                                 <field name="currency_id"/>
                                 <field name="fecha_aprobado"/>
+                                <field name="fecha_terminado"/>
                                 <h3>Precios</h3>
                                 <field name="precio_presupuestado"/>
                                 <field name="precio_ejecutado"/>
@@ -88,7 +90,6 @@
                             </page>
                             <page string="Instalaciones"></page>
                             <page name="etapas_page" string="Etapas">
-<!--                                <field name="etapas" context="{'default_proyecto_id':active_id,'default_proyecto_context':id , 'default_name':name }">-->
 <!--                                    <form>-->
 <!--                                        <field name="name"/>-->
 <!--                                        <field name="proyecto_id"/>-->
@@ -99,7 +100,6 @@
 <!--                                    </form>-->
 
 <!--                                </field>-->
-                                <!--                                <field name="etapas" context="{'default_proyecto_id':active_id,'default_proyecto_context':id}"/>-->
                             </page>
 
                         </notebook>
@@ -118,7 +118,6 @@
         <record id="proyectos.proyectos_etapa_act_view" model="ir.actions.act_window">
             <field name="name">Etapas</field>
             <field name="res_model">proyectos.etapa</field>
-            <field name="context">{'default_proyecto_id':active_id}</field>
             <field name="view_mode">tree,form,kanban</field>
         </record>
 

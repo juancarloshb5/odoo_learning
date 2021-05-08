@@ -19,12 +19,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product'],
+    'depends': ['base', 'product','stock_landed_costs'],
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
         'security/res_groups.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/etapa_views.xml',
         # 'views/templates.xml',

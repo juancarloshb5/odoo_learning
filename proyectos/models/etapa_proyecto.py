@@ -8,6 +8,7 @@ class Etapa(models.Model):
     name = fields.Char(string="Nombre Etapa")
 
     proyecto_id = fields.Many2one(comodel_name="proyectos.proyecto")
+    proyecto_name = fields.Char(string="Nombre Proyecto", related="proyecto_id.name", readonly = True)
     proyecto_context = fields.Integer(string="Proyecto Context")
     currency_id = fields.Many2one(comodel_name="res.currency", string="Moneda", default=Defaults.default_currency())
     fecha_inicio = fields.Date("Fecha Inicio")

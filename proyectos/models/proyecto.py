@@ -44,6 +44,7 @@ class Proyecto(models.Model):
     # currency_id = fields.Many2one("res.currency", string="Moneda", default=lambda self: self.env['res.currency'].search([('name','=','DOP')],limit=1).id)
     currency_id = fields.Many2one("res.currency", string="Moneda", default=Defaults.default_currency())
     fecha_aprobado = fields.Date(string="Fecha Aprobado", readonly="true")
+    fecha_terminado = fields.Date(string="Fecha Terminado")
     presupuesto_adjunto = fields.Binary(string="Presupuesto")
 
     precio_presupuestado = fields.Float(string="Presupuesto Total", compute="_calculo_presupuesto")
@@ -52,6 +53,7 @@ class Proyecto(models.Model):
 
     modelos = fields.One2many(comodel_name="proyectos.proyecto_modelo", inverse_name="proyecto_id")
     etapas = fields.One2many(comodel_name="proyectos.etapa", inverse_name="proyecto_id")
+
 
 
 

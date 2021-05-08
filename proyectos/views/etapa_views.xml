@@ -1,101 +1,171 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <data>
+        <record id="proyectos.etapa_tree_view" model="ir.ui.view">
+            <field name="name">Etapas</field>
+            <field name="model">proyectos.etapa</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="proyecto_id"/>
+                    <field name="proyecto_name"/>
+                </tree>
 
+            </field>
+        </record>
 
-    <record id="proyectos.etapa_tree_view" model="ir.ui.view">
-        <field name="name">Etapas</field>
-        <field name="model">proyectos.etapa</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name"/>
-                <field name="state"/>
-                <field name="proyecto_id"  context="{'default_proyecto_id':active_id}"/>
-            </tree>
-
-        </field>
-    </record>
-    <record id="proyectos.etapa_in_proyecto_form" model="ir.ui.view">
-        <field name="name">Etapas proyecto</field>
-        <field name="model">proyectos.proyecto</field>
-        <field name="inherit_id" ref="proyectos.proyectos_proyecto_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//page[@name='etapas_page']" position="inside">
-                <h2>Hola</h2>
-                <field name="etapas" context="{'default_proyecto_id': active_id}">
-                    <form>
-                        <sheet>
+        <record id="proyectos.etapa_form" model="ir.ui.view">
+            <field name="name">Etapas proyecto</field>
+            <field name="model">proyectos.etapa</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
                             <group>
-                                <group>
-                                    <field name="name"/>
-                                    <field name="proyecto_id" attrs="{'invisible':[('proyecto_id','=',False)]}"/>
-                                    <field name="proyecto_context"/>
-                                    <field name="state"/>
-                                    <field name="fecha_inicio"/>
-                                    <field name="presupuesto_winperfil"/>
+                                <field name="name"/>
+<!--                                <field name="proyecto_id" attrs="{'invisible':[('proyecto_id','!=',False)]}"/>-->
+                                <field name="proyecto_id" />
 
-                                </group>
-                                <group>
-                                    <h3>Winperfil</h3>
-                                    <field name="presupuesto_winperfil"/>
-                                    <field name="oferta_winperfil"/>
-                                    <field name="presupuesto_adjunto"/>
-                                    <h3>Precios</h3>
-                                    <field name="precio_ejecutado"/>
-                                    <field name="precio_presupuesto"/>
-                                </group>
-
+                                <field name="proyecto_context"/>
+                                <field name="state"/>
+                                <field name="fecha_inicio"/>
+                                <field name="presupuesto_winperfil"/>
 
                             </group>
                             <group>
-                                <notebook>
-                                    <page string="Lineas" >
-                                        <field name="modelos" attrs="{'invisible':[('proyecto_id','=',False)]}">
-                                            <tree editable="bottom">
-                                                <field name="name"/>
-<!--                                                <field name="etapa"/>-->
-                                                <field name="proyecto_id"/>
-                                                <field name="modelo_id"/>
-                                                <field name="cantidad"/>
-                                                <field name="ancho"/>
-                                                <field name="alto"/>
-                                                <field name="precio"/>
-                                                <field name="subtotal_ejecutado"/>
-                                                <field name="precio_presupuesto"/>
-                                                <field name="subtotal_presupuesto"/>
-                                            </tree>
-                                        </field>
-                                    </page>
-                                    <page string="Montos">
+                                <h3>Winperfil</h3>
+                                <field name="presupuesto_winperfil"/>
+                                <field name="oferta_winperfil"/>
+                                <field name="presupuesto_adjunto"/>
+                                <h3>Precios</h3>
+                                <field name="precio_ejecutado"/>
+                                <field name="precio_presupuesto"/>
+                            </group>
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Lineas">
+                                    <field name="modelos" context="{'default_proyecto_id':proyecto_id}"
+                                           attrs="{'invisible':[('proyecto_id','=',False)]}">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <!--                                                <field name="etapa"/>-->
+                                            <field name="proyecto_id"/>
+                                            <field name="modelo_id"/>
+                                            <field name="cantidad"/>
+                                            <field name="ancho"/>
+                                            <field name="alto"/>
+                                            <field name="precio"/>
+                                            <field name="subtotal_ejecutado"/>
+                                            <field name="precio_presupuesto"/>
+                                            <field name="subtotal_presupuesto"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Montos">
+                                    <group>
                                         <group>
-                                            <group>
-                                                <h3 class="oe_title">Calculados</h3>
-                                                <field name="precio_ejecutado"/>
-                                                <field name="instalacion_calculada"/>
-                                            </group>
-                                            <group>
-                                                <h3>Winperfil</h3>
-                                                <field name="precio_presupuesto"/>
-                                                <field name="instalacion_pagar"/>
-                                            </group>
+                                            <h3 class="oe_title">Calculados</h3>
+                                            <field name="precio_ejecutado"/>
+                                            <field name="instalacion_calculada"/>
                                         </group>
+                                        <group>
+                                            <h3>Winperfil</h3>
+                                            <field name="precio_presupuesto"/>
+                                            <field name="instalacion_pagar"/>
+                                        </group>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
 
-                                    </page>
-                                </notebook>
-                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-                        </sheet>
-                    </form>
+        <!--    <record id="proyectos.etapa_in_proyecto_form" model="ir.ui.view">-->
+        <!--        <field name="name">Etapas proyecto</field>-->
+        <!--        <field name="model">proyectos.proyecto</field>-->
+        <!--        <field name="inherit_id" ref="proyectos.proyectos_proyecto_form"/>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <xpath expr="//page[@name='etapas_page']" position="inside">-->
+        <!--                <h2>Hola</h2>-->
+        <!--                    <form>-->
+        <!--                        <sheet>-->
+        <!--                            <group>-->
+        <!--                                <group>-->
+        <!--                                    <field name="name"/>-->
+        <!--                                    <field name="proyecto_id" attrs="{'invisible':[('proyecto_id','=',False)]}"/>-->
+        <!--                                    <field name="proyecto_context"/>-->
+        <!--                                    <field name="state"/>-->
+        <!--                                    <field name="fecha_inicio"/>-->
+        <!--                                    <field name="presupuesto_winperfil"/>-->
 
-                    <tree>
-                        <field name="name"/>
-                        <field name="proyecto_id"/>
-                        <field name="oferta_winperfil"/>
+        <!--                                </group>-->
+        <!--                                <group>-->
+        <!--                                    <h3>Winperfil</h3>-->
+        <!--                                    <field name="presupuesto_winperfil"/>-->
+        <!--                                    <field name="oferta_winperfil"/>-->
+        <!--                                    <field name="presupuesto_adjunto"/>-->
+        <!--                                    <h3>Precios</h3>-->
+        <!--                                    <field name="precio_ejecutado"/>-->
+        <!--                                    <field name="precio_presupuesto"/>-->
+        <!--                                </group>-->
 
-                    </tree>
 
-                </field>
-            </xpath>
+        <!--                            </group>-->
+        <!--                            <group>-->
+        <!--                                <notebook>-->
+        <!--                                    <page string="Lineas" >-->
+        <!--                                        <field name="modelos" attrs="{'invisible':[('proyecto_id','=',False)]}">-->
+        <!--                                            <tree editable="bottom">-->
+        <!--                                                <field name="name"/>-->
+        <!--&lt;!&ndash;                                                <field name="etapa"/>&ndash;&gt;-->
+        <!--                                                <field name="proyecto_id"/>-->
+        <!--                                                <field name="modelo_id"/>-->
+        <!--                                                <field name="cantidad"/>-->
+        <!--                                                <field name="ancho"/>-->
+        <!--                                                <field name="alto"/>-->
+        <!--                                                <field name="precio"/>-->
+        <!--                                                <field name="subtotal_ejecutado"/>-->
+        <!--                                                <field name="precio_presupuesto"/>-->
+        <!--                                                <field name="subtotal_presupuesto"/>-->
+        <!--                                            </tree>-->
+        <!--                                        </field>-->
+        <!--                                    </page>-->
+        <!--                                    <page string="Montos">-->
+        <!--                                        <group>-->
+        <!--                                            <group>-->
+        <!--                                                <h3 class="oe_title">Calculados</h3>-->
+        <!--                                                <field name="precio_ejecutado"/>-->
+        <!--                                                <field name="instalacion_calculada"/>-->
+        <!--                                            </group>-->
+        <!--                                            <group>-->
+        <!--                                                <h3>Winperfil</h3>-->
+        <!--                                                <field name="precio_presupuesto"/>-->
+        <!--                                                <field name="instalacion_pagar"/>-->
+        <!--                                            </group>-->
+        <!--                                        </group>-->
 
-        </field>
-    </record>
+        <!--                                    </page>-->
+        <!--                                </notebook>-->
+        <!--                            </group>-->
+
+        <!--                        </sheet>-->
+        <!--                    </form>-->
+
+        <!--                    <tree>-->
+        <!--                        <field name="name"/>-->
+        <!--                        <field name="proyecto_id"/>-->
+        <!--                        <field name="oferta_winperfil"/>-->
+
+        <!--                    </tree>-->
+
+        <!--                </field>-->
+        <!--            </xpath>-->
+
+        <!--        </field>-->
+        <!--    </record>-->
+    </data>
 </odoo>
