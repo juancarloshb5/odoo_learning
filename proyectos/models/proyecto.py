@@ -52,7 +52,7 @@ class Proyecto(models.Model):
     precio_ejecutado_presupuesto = fields.Float(string="Ejecutado Presupuesto", compute="_calculo_ejecutado_presupuesto")
 
     modelos = fields.One2many(comodel_name="proyectos.proyecto_modelo", inverse_name="proyecto_id")
-    etapas = fields.One2many(comodel_name="proyectos.etapa", inverse_name="proyecto_id")
+    etapas = fields.One2many(comodel_name="proyectos.etapas", inverse_name="proyecto_id")
 
 
 

@@ -18,6 +18,7 @@
         <record model="ir.ui.view" id="proyectos_proyecto_form">
             <field name="name">Proyectos</field>
             <field name="model">proyectos.proyecto</field>
+
             <field name="arch" type="xml">
                 <form>
                     <header>
@@ -50,6 +51,15 @@
                                statusbar_visible="proceso,aprobado,terminado,descartado"/>
                     </header>
                     <sheet>
+                        <div name="button box" class="oe_button_box">
+                                <button
+                                    name ="proyectos.etapas_from_proyecto_act_view"
+                                    class="oe_highlight"
+                                    attrs="{'invisible':[('id','=','False')]}"
+                                    context="{'default_proyecto_id': active_id}"
+                                    string="Ver Etapas"
+                                    type="action" />
+                            </div>
                         <group>
                             <group>
                                 <field name="id"/>
@@ -69,6 +79,9 @@
                                 <field name="precio_ejecutado_presupuesto"/>
                                 <field name="precio_instalacion"/>
                             </group>
+
+
+
                         </group>
                         <notebook>
                             <page string="Modelos">
@@ -78,7 +91,7 @@
                                 <field name="modelos">
                                     <tree editable="bottom">
                                         <field name="name"/>
-                                        <!--                                        <field name="proyecto_id"/>-->
+                                        <field name="proyecto_id"/>
                                         <field name="producto_id"/>
                                         <field name="cantidad"/>
                                         <field name="ancho"/>
@@ -88,18 +101,17 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Instalaciones"></page>
-                            <page name="etapas_page" string="Etapas">
-<!--                                    <form>-->
-<!--                                        <field name="name"/>-->
-<!--                                        <field name="proyecto_id"/>-->
-<!--                                        <field name="proyecto_context"/>-->
-<!--                                        <field name="state"/>-->
-<!--                                        <field name="fecha_inicio"/>-->
-<!--                                        <field name="presupuesto_winperfil"/>-->
-<!--                                    </form>-->
+                            <page string="Instalaciones">
 
-<!--                                </field>-->
+                            </page>
+                            <page name="etapas_page" string="Etapas">
+                                <field name="etapas"
+                                       context="{
+                                            'default_proyecto_id':active_id,
+                                            'default_proyecto_context':active_id
+                                            }">
+                                </field>
+
                             </page>
 
                         </notebook>
@@ -110,20 +122,16 @@
 
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="proyectos.proyectos_proyecto_action_window">
-            <field name="name">Proyectos</field>
+            <field name="name">Proyectos EUROAMERICA</field>
             <field name="res_model">proyectos.proyecto</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">kanban,tree,form</field>
+
         </record>
 
-        <record id="proyectos.proyectos_etapa_act_view" model="ir.actions.act_window">
-            <field name="name">Etapas</field>
-            <field name="res_model">proyectos.etapa</field>
-            <field name="view_mode">tree,form,kanban</field>
-        </record>
+
 
         <menuitem name="Proyectos" id="proyectos.menu_root" action="proyectos.proyectos_proyecto_action_window"/>
-                <menuitem name="Etapas" parent="proyectos.menu_root" id="proyectos.etapas_menu"
-                          action="proyectos.proyectos_etapa_act_view"/>
+
 
 
     </data>

@@ -77,7 +77,14 @@ class StockLandedCostInherit(models.Model):
 
 
 
+validProducts = ['Marco E70', 'Hoja E70']
+
 class StockLandedCostLinesInherit(models.Model):
     _inherit = "stock.landed.cost.lines"
 
-    x_product_cost_related = fields.Many2one('product.product', 'Product Related')
+
+
+    def products_in_move(self):
+        return validProducts
+
+    x_product_cost_related = fields.Many2one('product.product', 'Product Related', domain=[('name','in', 'cost_id.picking_ids.move_lines.product_id' )])

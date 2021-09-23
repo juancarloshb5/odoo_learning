@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_proyectos,proyectos_proyecto,model_proyectos_proyecto,base.group_user,1,1,1,1
-access_proyectos_etapa,proyectos_etapa_acces,model_proyectos_etapa,base.group_user,1,1,1,1
+access_proyectos_etapa,proyectos_etapa_acces,model_proyectos_etapas,base.group_user,1,1,1,1
 access_proyectos_usuario,proyectos_proyecto_usuario,model_proyectos_proyecto,proyectos.group_proyecto_usuario,1,1,1,0
 access_manager,proyectos_proyecto_manager,model_proyectos_proyecto,proyectos.group_proyecto_manager,1,1,1,1
 access_proyectos_modelo_proyecto_manager,proyectos_proyecto_manager,model_proyectos_proyecto_modelo,proyectos.group_proyecto_usuario,1,1,1,1

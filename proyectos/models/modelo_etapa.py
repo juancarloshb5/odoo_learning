@@ -5,9 +5,10 @@ class ModeloEtapa(models.Model):
     _description="Modelo Etapa"
 
     name= fields.Char(string="Referencia")
-    etapa = fields.Many2one(comodel_name="proyectos.etapa")
-
-    proyecto_id = fields.Many2one(related="etapa.proyecto_id", readonly=True)
+    etapa = fields.Many2one(comodel_name="proyectos.etapas", default=lambda self: self._context.get('default_etapa'))
+    proyecto_id = fields.Many2one(string="Id Proyecto", related="etapa.proyecto_id" )
+    # modelo_id = fields.Many2one(comodel_name="proyectos.proyecto_modelo")
+    # modelo_id = fields.Many2one(comodel_name="proyectos.proyecto_modelo", domain="[('proyecto_id','=',proyecto_id)]")
     modelo_id = fields.Many2one(comodel_name="proyectos.proyecto_modelo", domain="[('proyecto_id','=',proyecto_id)]")
     cantidad = fields.Integer(string="Cantidad", default=1)
     ancho = fields.Integer(string="Ancho(mm)")
@@ -26,6 +27,16 @@ class ModeloEtapa(models.Model):
     def _subtotal_ejecutado(self):
         for modelo in self:
             modelo.subtotal_ejecutado = modelo.cantidad * modelo.precio
+
+    @api.model
+    def default_get(self, fields):
+        res = super(ModeloEtapa, self).default_get(fields)
+        print('Context....')
+        print(self.env.context)
+        # if(self.env.)
+        print('Defaults: .....')
+        print(res)
+        return res
 
     # @api.depends('etapa')
     # def _proyecto(self):

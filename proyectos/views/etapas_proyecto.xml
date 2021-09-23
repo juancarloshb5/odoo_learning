@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="survey_user_input_view_search" model="ir.ui.view">
+        <field name="name">proyectos.etapas.search</field>
+        <field name="model">proyectos.etapas</field>
+        <field name="arch" type="xml">
+            <search string="Etapas Filtro">
+                <field name="name"/>
+                <field name="proyecto_id"/>
+                <separator/>
+                <filter string="En Produccion" name="estado_produccion" domain="[('state','=', 'proceso')]" />
+                <filter string="Terminado" name="estado_terminado" domain="[('state','=', 'terminada')]" />
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_proyecto" string="Proyecto" domain="[]" context="{'group_by': 'proyecto_id'}"/>
+                    <filter name="group_by_cliente" string="Cliente" domain="[]" context="{'group_by': 'proyecto_cliente'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record  id="proyectos.etapas_from_proyecto_act_view" model="ir.actions.act_window">
+        <field name="name">Etapas Proyectos</field>
+        <field name="res_model">proyectos.etapas</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('proyecto_id','=',default_proyecto_id)]</field>
+    </record>
+    <record  id="proyectos.etapas_proyecto_act_view" model="ir.actions.act_window">
+        <field name="name">Etapas Proyectos</field>
+        <field name="res_model">proyectos.etapas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Etapasss" parent="proyectos.menu_root" id="proyectos.etapas_menu" action="proyectos.etapas_proyecto_act_view"/>
+</odoo>

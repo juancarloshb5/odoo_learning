@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 {
     'name': "proyectos",
 
@@ -27,6 +28,7 @@
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/etapa_views.xml',
+        'views/etapas_proyecto.xml',
         # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
@@ -34,4 +36,3 @@
         # 'demo/demo.xml',
     ],
 }
-# -*- coding: utf-8 -*-
